@@ -17,9 +17,9 @@ int main() {
 	printf("char *cp = &c;\nint *ip = &i;\nlong *lp = &l;\n\n");
 	printf("cp = %p\nip = %p\nlp = %p\n\n", cp, ip, lp);
 
-	cp++;
-	ip++;
-	lp++;
+	(*cp)++;
+	(*ip)++;
+	(*lp)++;
 
 	printf("cp++;\nip++;\nlp++;\n\n");
 	printf("cp = %p\nip = %p\nlp = %p\n\n", cp, ip, lp);
@@ -43,26 +43,30 @@ int main() {
 	printf("\n");
 
 	for (j = 0; j < 4; j++){
-		ucp[j]++;
+		*ucp++;
 		printf("ui (hex): %x\n", ui);
         	printf("ui (decimal): %u\n\n", ui);
+		ucp++;
 	}
 
 	for (j = 0; j < 4; j++){
-                printf("ui[%d] (hhx): %hhx\n", j, ucp[j]);
-                printf("ui[%d] (hhu): %hhu\n\n", j, ucp[j]);
+                printf("ui[%d] (hhx): %hhx\n", j, ucp);
+                printf("ui[%d] (hhu): %hhu\n\n", j, ucp);
+		ucp++;
         }
 
 	ucp = &ui;
 
         for (j = 0; j < 4; j++){
-                ucp[j] += 16;
+                *ucp += 16;
 		printf("ui (hex): %x\n", ui);
         	printf("ui (decimal): %u\n\n", ui);
+		ucp++;
 	}
 	for (j = 0; j < 4; j++){
-		printf("ui[%d] (hhx): %hhx\n", j, ucp[j]);
-		printf("ui[%d] (hhu): %hhu\n\n", j, ucp[j]);
+		printf("ui[%d] (hhx): %hhx\n", j, ucp);
+		printf("ui[%d] (hhu): %hhu\n\n", j, ucp);
+		ucp++;
 	}
 	return 0;
 
